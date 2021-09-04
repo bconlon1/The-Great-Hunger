@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+modId="great_hunger"
+version="${file.jarVersion}"
+displayName="The Great Hunger"
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+#logoFile="examplemod.png" #optional
+credits="Credits to Mojang for the original concept of Mob C, 'The Great Hunger'" #optional
+authors="bconlon" #optional
+description='''
+A mod to implement Mob C from the Minecon Earth 2017 Mob Vote.
+'''
+
+[[dependencies.great_hunger]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.great_hunger]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
