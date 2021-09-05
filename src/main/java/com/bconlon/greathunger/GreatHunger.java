@@ -5,6 +5,7 @@ import com.bconlon.greathunger.common.registry.EntityTypeRegistry;
 import com.bconlon.greathunger.common.registry.ItemRegistry;
 import com.bconlon.greathunger.core.data.ItemModelData;
 import com.bconlon.greathunger.core.data.LanguageData;
+import com.bconlon.greathunger.core.data.BlockTagData;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -55,7 +56,7 @@ public class GreatHunger
             generator.addProvider(new LanguageData(generator));
         }
         if (event.includeServer()) {
-
+            generator.addProvider(new BlockTagData(generator, helper));
         }
     }
 
