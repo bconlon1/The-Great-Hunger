@@ -9,9 +9,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.function.Supplier;
 
-public abstract class ItemModelDataProvider extends ItemModelProvider
+public abstract class GHItemModelProvider extends ItemModelProvider
 {
-    public ItemModelDataProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
+    public GHItemModelProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
         super(generator, GreatHunger.MOD_ID, fileHelper);
     }
 

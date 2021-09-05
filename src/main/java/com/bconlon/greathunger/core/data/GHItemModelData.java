@@ -1,13 +1,13 @@
 package com.bconlon.greathunger.core.data;
 
-import com.bconlon.greathunger.common.registry.ItemRegistry;
-import com.bconlon.greathunger.core.data.provider.ItemModelDataProvider;
+import com.bconlon.greathunger.common.registry.GHItemRegistry;
+import com.bconlon.greathunger.core.data.provider.GHItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ItemModelData extends ItemModelDataProvider
+public class GHItemModelData extends GHItemModelProvider
 {
-    public ItemModelData(DataGenerator generator, ExistingFileHelper fileHelper) {
+    public GHItemModelData(DataGenerator generator, ExistingFileHelper fileHelper) {
         super(generator, fileHelper);
     }
 
@@ -18,6 +18,6 @@ public class ItemModelData extends ItemModelDataProvider
 
     @Override
     protected void registerModels() {
-        eggItem(ItemRegistry.MUNCHER_SPAWN_EGG);
+        eggItem(GHItemRegistry.MUNCHER_SPAWN_EGG);
     }
 }

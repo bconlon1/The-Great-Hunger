@@ -1,7 +1,7 @@
 package com.bconlon.greathunger.common.entity;
 
 import com.bconlon.greathunger.GreatHunger;
-import com.bconlon.greathunger.common.registry.TagsRegistry;
+import com.bconlon.greathunger.common.registry.GHTagsRegistry;
 import com.bconlon.greathunger.core.api.MuncherVariant;
 import com.bconlon.greathunger.core.registry.MuncherVariants;
 import net.minecraft.block.BlockState;
@@ -79,7 +79,7 @@ public abstract class AbstractMuncherEntity extends CreatureEntity
 
     public static boolean canSpawn(EntityType<? extends AbstractMuncherEntity> muncher, IServerWorld level, SpawnReason reason, BlockPos pos, Random random) {
         return level.getDifficulty() != Difficulty.PEACEFUL
-                && level.getBlockState(pos.below()).getBlock().is(TagsRegistry.Blocks.MUNCHER_SPAWNING_BLOCKS)
+                && level.getBlockState(pos.below()).getBlock().is(GHTagsRegistry.Blocks.MUNCHER_SPAWNING_BLOCKS)
                 && pos.getY() <= 30
                 && MonsterEntity.isDarkEnoughToSpawn(level, pos, random)
                 && MonsterEntity.checkMobSpawnRules(muncher, level, reason, pos, random);

@@ -1,7 +1,7 @@
 package com.bconlon.greathunger.core.data;
 
 import com.bconlon.greathunger.GreatHunger;
-import com.bconlon.greathunger.common.registry.TagsRegistry;
+import com.bconlon.greathunger.common.registry.GHTagsRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
@@ -9,9 +9,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
 
-public class BlockTagData extends BlockTagsProvider
+public class GHBlockTagData extends BlockTagsProvider
 {
-    public BlockTagData(DataGenerator generatorIn, @Nullable ExistingFileHelper existingFileHelper) {
+    public GHBlockTagData(DataGenerator generatorIn, @Nullable ExistingFileHelper existingFileHelper) {
         super(generatorIn, GreatHunger.MOD_ID, existingFileHelper);
     }
 
@@ -23,7 +23,7 @@ public class BlockTagData extends BlockTagsProvider
     @Override
     @SuppressWarnings("unchecked")
     protected void addTags() {
-        tag(TagsRegistry.Blocks.MUNCHER_SPAWNING_BLOCKS)
+        tag(GHTagsRegistry.Blocks.MUNCHER_SPAWNING_BLOCKS)
                 .add(Blocks.STONE);
     }
 }

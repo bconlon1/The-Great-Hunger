@@ -1,8 +1,6 @@
 package com.bconlon.greathunger.common.entity;
 
-import com.bconlon.greathunger.GreatHunger;
-import com.bconlon.greathunger.common.registry.EntityTypeRegistry;
-import net.minecraft.block.BlockState;
+import com.bconlon.greathunger.common.registry.GHEntityTypeRegistry;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -20,7 +18,7 @@ public class MuncherEntity extends AbstractMuncherEntity
     }
 
     public MuncherEntity(World level) {
-        super(EntityTypeRegistry.MUNCHER.get(), level);
+        super(GHEntityTypeRegistry.MUNCHER.get(), level);
     }
 
     @Override

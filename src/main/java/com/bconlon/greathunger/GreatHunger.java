@@ -1,11 +1,11 @@
 package com.bconlon.greathunger;
 
-import com.bconlon.greathunger.client.ModRendering;
-import com.bconlon.greathunger.common.registry.EntityTypeRegistry;
-import com.bconlon.greathunger.common.registry.ItemRegistry;
-import com.bconlon.greathunger.core.data.ItemModelData;
-import com.bconlon.greathunger.core.data.LanguageData;
-import com.bconlon.greathunger.core.data.BlockTagData;
+import com.bconlon.greathunger.client.GHRendering;
+import com.bconlon.greathunger.common.registry.GHEntityTypeRegistry;
+import com.bconlon.greathunger.common.registry.GHItemRegistry;
+import com.bconlon.greathunger.core.data.GHItemModelData;
+import com.bconlon.greathunger.core.data.GHLanguageData;
+import com.bconlon.greathunger.core.data.GHBlockTagData;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -35,8 +35,8 @@ public class GreatHunger
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> Client::clientInitialization);
 
         DeferredRegister<?>[] registers = {
-                EntityTypeRegistry.ENTITIES,
-                ItemRegistry.ITEMS
+                GHEntityTypeRegistry.ENTITIES,
+                GHItemRegistry.ITEMS
         };
 
         for (DeferredRegister<?> register : registers) {
@@ -45,18 +45,18 @@ public class GreatHunger
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
-        EntityTypeRegistry.registerSpawnPlacements();
+        GHEntityTypeRegistry.registerSpawnPlacements();
     }
 
     public void dataSetup(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
         if (event.includeClient()) {
-            generator.addProvider(new ItemModelData(generator, helper));
-            generator.addProvider(new LanguageData(generator));
+            generator.addProvider(new GHItemModelData(generator, helper));
+            generator.addProvider(new GHLanguageData(generator));
         }
         if (event.includeServer()) {
-            generator.addProvider(new BlockTagData(generator, helper));
+            generator.addProvider(new GHBlockTagData(generator, helper));
         }
     }
 
@@ -68,7 +68,7 @@ public class GreatHunger
         }
 
         public static void clientSetup(FMLClientSetupEvent event) {
-            ModRendering.registerEntityRenderers();
+            GHRendering.registerEntityRenderers();
         }
     }
 }

@@ -22,7 +22,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(modid = GreatHunger.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class EntityTypeRegistry
+public class GHEntityTypeRegistry
 {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, GreatHunger.MOD_ID);
 
@@ -30,12 +30,12 @@ public class EntityTypeRegistry
     public static final RegistryObject<EntityType<MuncherEntity>> MUNCHER = ENTITIES.register("muncher", () -> MUNCHER_TYPE);
 
     public static void registerSpawnPlacements() {
-        EntitySpawnPlacementRegistry.register(EntityTypeRegistry.MUNCHER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractMuncherEntity::canSpawn);
+        EntitySpawnPlacementRegistry.register(GHEntityTypeRegistry.MUNCHER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AbstractMuncherEntity::canSpawn);
     }
 
     @SubscribeEvent
     public static void registerEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(EntityTypeRegistry.MUNCHER.get(), MuncherEntity.createMobAttributes().build());
+        event.put(GHEntityTypeRegistry.MUNCHER.get(), MuncherEntity.createMobAttributes().build());
     }
 
     @Mod.EventBusSubscriber
@@ -47,7 +47,7 @@ public class EntityTypeRegistry
                 ResourceLocation name = event.getName();
                 RegistryKey<Biome> biome = RegistryKey.create(Registry.BIOME_REGISTRY, name);
                 if (BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.OVERWORLD)) {
-                    event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(EntityTypeRegistry.MUNCHER.get(), 50, 1, 1)); //TODO: Weight might need balancing later.
+                    event.getSpawns().getSpawner(EntityClassification.MONSTER).add(new MobSpawnInfo.Spawners(GHEntityTypeRegistry.MUNCHER.get(), 50, 1, 1)); //TODO: Weight might need balancing later.
                 }
             }
         }

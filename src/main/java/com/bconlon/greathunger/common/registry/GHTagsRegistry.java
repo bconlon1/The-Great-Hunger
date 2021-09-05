@@ -6,7 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 
-public class TagsRegistry
+public class GHTagsRegistry
 {
     public static class Blocks
     {
