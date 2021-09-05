@@ -2,6 +2,8 @@ package com.bconlon.greathunger.common.entity;
 
 import com.bconlon.greathunger.GreatHunger;
 import com.bconlon.greathunger.common.registry.GHTagsRegistry;
+import com.bconlon.greathunger.common.spawning.MuncherSpawnInfo;
+import com.bconlon.greathunger.common.spawning.setup.IMuncherSpawnSetup;
 import com.bconlon.greathunger.core.api.MuncherVariant;
 import com.bconlon.greathunger.core.registry.MuncherVariants;
 import net.minecraft.block.BlockState;
@@ -18,13 +20,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 import java.util.Random;
 
 //TODO: Enchantment module handling can mainly be put in here, as well as variant spawn parameters.
 public abstract class AbstractMuncherEntity extends CreatureEntity
 {
     public static final DataParameter<String> DATA_VARIANT_ID = EntityDataManager.defineId(AbstractMuncherEntity.class, DataSerializers.STRING);
-    public static final DataParameter<Boolean> DATA_HIDING_ID = EntityDataManager.defineId(AbstractMuncherEntity.class, DataSerializers.BOOLEAN);
+    public static final DataParameter<Boolean> DATA_HIDING_ID = EntityDataManager.defineId(AbstractMuncherEntity.class, DataSerializers.BOOLEAN); //TODO: Might switch to an enum since the entity will have a couple different states.
 
     protected AbstractMuncherEntity(EntityType<? extends CreatureEntity> entityType, World level) {
         super(entityType, level);
@@ -42,8 +45,12 @@ public abstract class AbstractMuncherEntity extends CreatureEntity
     public ILivingEntityData finalizeSpawn(IServerWorld level, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
         BlockState blockStandingOn = level.getBlockState(this.blockPosition().below());
+        String spawnInfo = new MuncherSpawnInfo(blockStandingOn).toString();
+        Map<String, IMuncherSpawnSetup> muncherSpawning = MuncherVariants.MUNCHER_SPAWNING;
+        if (muncherSpawning.containsKey(spawnInfo)) {
+            muncherSpawning.get(spawnInfo).setupSpawn(this, level, difficulty, reason, spawnData, dataTag);
+        }
         GreatHunger.LOGGER.info(this.blockPosition().below() + ": " + blockStandingOn);
-        //TODO: Something to handle setting types based on spawn parameters or something that can be fed into the variant registry.
         return spawnData;
     }
 
